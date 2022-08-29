@@ -1,8 +1,31 @@
 <?php 
+include("includes/config.php"); 
+include("includes/classes/FormSanitizer.php"); 
+include("includes/classes/Constants.php"); 
+include("includes/classes/Account.php"); 
+
+$account = new Account($connection); 
+
 if(isset($_POST["submitButton"])) {
-    echo "this form was submitted"; 
+    $username = FormSanitizer::sanitizeFormUsername($_POST["username"]); 
+    $password = FormSanitizer::sanitizeFormPassword($_POST["password"]);
+
+    $success = $account->login($username, $password); 
+
+    if($success) {
+        $_SESSION["userLoggedIn"] = $username; 
+        header("Location: index.php"); 
+    }
+}
+
+function getInputValue($name) {
+    if(isset($_POST[$name])) {
+        echo $_POST[$name]; 
+    }
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html>
@@ -14,7 +37,7 @@ if(isset($_POST["submitButton"])) {
 
 <body>
 
-    <div class="signInContainer">
+    <div class="signInContainer"> 
         <div class="column">
 
             <div class="header">
@@ -24,7 +47,8 @@ if(isset($_POST["submitButton"])) {
             </div>
 
             <form method="POST">
-                <input type="text" name="username" placeholder="Username" required> 
+                <?php echo $account->getError(Constants::$loginFailed); ?>
+                <input type="text" name="username" placeholder="Username" value="<?php getInputValue("username"); ?>" required> 
 
                 <input type="password" name="password" placeholder="password" required> 
 
