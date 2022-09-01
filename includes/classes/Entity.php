@@ -10,7 +10,7 @@ class Entity {
         if(is_array($input)) {
             $this->sqlData = $input;
         }
-        else {
+        else { // assuming specific entity ID is being selected 
             $query = $this->connection->prepare("SELECT * FROM entities WHERE id=:id");
             $query->bindValue(":id", $input); 
             $query->execute();
