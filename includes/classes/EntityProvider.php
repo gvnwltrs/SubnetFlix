@@ -1,7 +1,7 @@
 <?php
 class EntityProvider {
 
-    static public function getEntities($connection, $categoryId, $limit) {
+    public static function getEntities($connection, $categoryId, $limit) {
         $sql = "SELECT * FROM entities "; 
         
         if($categoryId != null) {
