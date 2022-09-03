@@ -10,7 +10,7 @@ class Video {
             $this->sqlData = $input;
         }
         else { // assuming specific entity ID is being selected 
-            $query = $this->connection->prepare("SELECT * FROM entities WHERE id=:id");
+            $query = $this->connection->prepare("SELECT * FROM videos WHERE id=:id");
             $query->bindValue(":id", $input); 
             $query->execute();
 
@@ -42,6 +42,12 @@ class Video {
 
     public function getEpisodeNumber() {
         return $this->sqlData["episode"]; 
+    }
+
+    public function incrementViews() {
+        $query = $this->connection->prepare("UPDATE videos SET views=views+1 WHERE id=:id"); 
+        $query->bindValue(":id", $this->getId()); 
+        $query->execute(); 
     }
 }
 ?>
