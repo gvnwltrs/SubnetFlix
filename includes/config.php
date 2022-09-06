@@ -23,4 +23,4 @@ try {
 catch (PDOException $e) {
     exit("Connection failed: " . $e->getMessage()); 
 }
-?> 
+?>
