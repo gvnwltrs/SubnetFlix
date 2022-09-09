@@ -4,6 +4,7 @@ require_once("includes/classes/PreviewProvider.php");
 require_once("includes/classes/CategoryContainers.php"); 
 require_once("includes/classes/EntityProvider.php"); 
 require_once("includes/classes/SeasonProvider.php");
+require_once("includes/classes/VideoProvider.php");
 require_once("includes/classes/Entity.php"); 
 require_once("includes/classes/Video.php");
 require_once("includes/classes/Season.php");
