@@ -201,6 +201,10 @@ button i {
     padding: 0 50px;
 }
 
+.previewCategories h1 {
+    color: #e5e5e5; 
+}
+
 .errorBanner {
     color: #fff;
     position: absolute; 
